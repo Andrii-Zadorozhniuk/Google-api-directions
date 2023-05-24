@@ -1,38 +1,91 @@
+:root {
+  --color: rgb(168, 37, 107);
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .App {
-  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.box {
+  position: absolute;
+  top: 0;
+  left: 27%;
+  right: 27%;
+  background-color: white;
+  padding: 1rem 0.6rem;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.box .inputs {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  column-gap: 10px;
+}
+.box .info {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+.box .info > p{
+  display: inline-block;
+  color:var(--color);
+  font-weight: 800;
+
+}
+.box button{
+  background-color: transparent;
+  border: none;
+  color: var(--color);
+  display: flex;
+  font-size: 17px;
+  margin-top: 4px;
+  cursor: pointer;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.box .inputs button {
+  font-size: 17px;
+  font-weight: bolder;
+  white-space: nowrap;
 }
 
-.App-link {
-  color: #61dafb;
+.box .inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box .inputs input {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 0.2rem 0.4rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.box-method {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.3rem;
+  background-color: white;
+}
+
+
+
+
+@media (max-width: 1000px) {
+  .box {
+    left: 0;
+    right: 0;
   }
-  to {
-    transform: rotate(360deg);
+  .box .inputs {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    row-gap: 10px;
   }
 }
