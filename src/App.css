@@ -61,6 +61,12 @@
   justify-content: space-between;
   align-items: center;
 }
+.box .inputs .buttons {
+  display: flex;
+  column-gap: 20px;
+  justify-content: center;
+}
+
 .box .inputs input {
   border: 1px solid gray;
   border-radius: 10px;
@@ -87,5 +93,9 @@
     display: grid;
     grid-template-columns: repeat(2, auto);
     row-gap: 10px;
+  }
+  .box-method {
+    top: auto;
+    bottom: 0;
   }
 }

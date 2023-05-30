@@ -1,7 +1,7 @@
 import './App.css';
 import { GoogleMap, useLoadScript, Marker, Autocomplete, DirectionsRenderer} from '@react-google-maps/api';
-import { useState, useRef } from 'react';
-const center = { lat: 48.8584, lng: 2.2945 }
+import { useState, useRef, useEffect } from 'react';
+
 
 function App() {
   const [map, setMap] = useState(/** @type google.maps.Map */ (null))
@@ -9,7 +9,17 @@ function App() {
   const [distance, setDistance] = useState('')
   const [duration, setDuration] = useState('')
   const [travelMode, setTravelMode] = useState("DRIVING");
-  
+  const [center, setCenter] = useState({})
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      ({coords: {latitude, longitude}}) => {
+          setCenter({lat: latitude, lng: longitude})
+      }
+    )
+  }, [])
+
+
+
   const markerRef = useRef(/** @type google.maps.Marker */ null);
   const markerPosition = () => {
     const position = markerRef.current.props.position;
@@ -61,7 +71,6 @@ function App() {
     mapTypeControl: false, fullscreenControl: false}}
     onLoad={map => setMap(map)}>
       {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
-      <Marker position={center} draggable={true} ref={markerRef} onPositionChanged={markerPosition}></Marker>
     </GoogleMap>
     <div className="box">
       <div className='inputs'>
@@ -71,9 +80,10 @@ function App() {
         <Autocomplete>
         <input placeholder='Destination' ref={destiantionRef}/>
         </Autocomplete>
+        <div className='buttons'>
         <button onClick={calculateRoute}>Calculate Route</button>
         <button onClick={clearRoute}><i class="fa fa-times" aria-hidden="true"></i>
-</button>
+</button></div>
       </div>
       <div className='info'>
         <p>Distance: {distance}</p>
